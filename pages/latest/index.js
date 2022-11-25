@@ -1,14 +1,24 @@
+import { useSession, signIn } from 'next-auth/react'
+
 function Home() {
+
+    const { data : session, status } = useSession({
+        required: true,
+        onUnauthenticated() {
+            // The user is not authenticated, handle it here.
+            signIn()
+        },
+    })
 
     const height_ = 163
     return (<>
 
         <div className="container">
-            <h1 className="my-3">Hey,</h1>
+            <h1 className="my-3">Hey, {session ? session.user.name : ''}</h1>
 
             <div className="row bg-light border border-2 rounded rounded-4 justify-content-center align-items-center">
                 <div className="col-md-3 fs-2 m-4">Jump back in...</div>
-                <div className="col-md-2 offset-md-5 m-4 p-0" style={{ height: height_ + "px"}}>
+                <div className="col-md-2 offset-md-5 m-4 p-0" style={{ height: height_ + "px" }}>
                     <div className="d-flex flex-column shadow-sm bg-white border border-2 rounded rounded-4 p-3 h-100">
                         <p className="fs-5 fw-bold text-truncate">Introduction to Anatomy</p>
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
@@ -27,7 +37,7 @@ function Home() {
 
 
 
-            <div className="row my-4 justify-content-left align-items-stretch" style={{ height: height_ + "px"}}>
+            <div className="row my-4 justify-content-left align-items-stretch" style={{ height: height_ + "px" }}>
 
                 <div className="col me-5 p-0 h-100">
                     <div className="d-flex flex-column shadow-sm bg-white border border-2 rounded rounded-4 p-3 h-100">
