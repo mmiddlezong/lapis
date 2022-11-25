@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 function Navbar(){
     return (<>
 
@@ -8,10 +10,10 @@ function Navbar(){
 
         <ul className="navbar-nav me-auto">
           <li className="nav-item">
-            <a className="nav-link link-dark" aria-current="page" href="/">Home</a>
+            <Link className="nav-link link-dark" aria-current="page" href="/">Home</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link link-dark" href="/decks">Decks</a>
+            <Link className="nav-link link-dark" href="/decks">Decks</Link>
           </li>
         </ul>
         <ul className="navbar-nav me-auto">
