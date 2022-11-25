@@ -1,7 +1,7 @@
 
 
 function Home() {
-  return <>
+  return (<>
     <div class="row my-5 bg-transparent align-items-center gx-5 justify-content-evenly">
       <div class="col-sm-5">
         <img src='/clock.png' class="img-fluid" alt="Responsive image" />
@@ -31,7 +31,7 @@ function Home() {
       </div>
     </div>
 
-  </>
+  </>)
 }
 
 export default Home
