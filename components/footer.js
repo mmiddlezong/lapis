@@ -1,4 +1,4 @@
-function Footer() {
+const Footer = props => {
     return (<>
 
         <div className="container">

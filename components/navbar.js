@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-function Navbar() {
+const Navbar = props => {
     const router = useRouter()
     const { data: session, status } = useSession()
 

@@ -4,10 +4,6 @@ function Home() {
 
     const { data : session, status } = useSession({
         required: true,
-        onUnauthenticated() {
-            // The user is not authenticated, handle it here.
-            signIn()
-        },
     })
 
     const height_ = 163
