@@ -38,9 +38,6 @@ function Navbar() {
                                         signIn()
                                     }}>Log In</Link>
                                 </li>
-                                <li className="nav-item bg-warning rounded rounded-4">
-                                    <a className="nav-link link-dark fs-6" href="{% url 'register' %}">Sign Up</a>
-                                </li>
                             </>
 
                         )}
