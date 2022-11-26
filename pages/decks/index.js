@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Client } from "pg"
 import { useRouter } from 'next/router'
+import { PrismaClient } from '@prisma/client'
+
+
+const prisma = new PrismaClient()
 
 function DecksPage({ decks }) {
     const router = useRouter()
@@ -30,8 +33,8 @@ function DecksPage({ decks }) {
     return (<>
 
         <div className="container">
-            <div class="my-3">
-                <label htmlFor="title" class="form-label">New deck title</label>
+            <div className="my-3">
+                <label htmlFor="title" className="form-label">New deck title</label>
                 <input id="title" className='form-control' type='text' value={deck} onChange={(e) => setDeck(e.target.value)}></input>
             </div>
             <button onClick={submitComment} className="btn btn-primary mb-3">Submit</button>
@@ -64,7 +67,7 @@ function DecksPage({ decks }) {
 export default DecksPage
 
 export async function getServerSideProps(context) {
-    const connectionString = process.env.DB_URL
+    /* const connectionString = process.env.DB_URL
     const client = new Client({
         user: process.env.PGUSER,
         host: process.env.PGHOST,
@@ -77,8 +80,8 @@ export async function getServerSideProps(context) {
     client.connect()
 
     const _res = await client.query('SELECT * FROM decks;')
-    await client.end()
-    const decks = _res.rows
+    await client.end() */
+    const decks = await prisma.deck.findMany()
     return {
         props: {
             decks,

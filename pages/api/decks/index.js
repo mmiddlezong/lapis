@@ -1,27 +1,24 @@
-import { decks } from "../../../data/decks";
-import { Pool, Client } from "pg"
 
+import { PrismaClient } from '@prisma/client'
+
+
+const prisma = new PrismaClient()
 
 export default async function handler(req, res) {
-    const client = new Client({
+    /* const client = new Client({
         user: process.env.PGUSER,
         host: process.env.PGHOST,
         database: process.env.PGDATABASE,
         password: process.env.PGPASSWORD,
         port: process.env.PGPOST,
         ssl: true
-    })
+    }) */
     if (req.method === 'GET') {
-        
-
-        client.connect()
-
-        const _res = await client.query('SELECT * FROM decks;')
-        await client.end()
-        res.status(200).json(_res.rows)
+        const decks = await prisma.deck.findMany()
+        res.status(200).json(decks)
 
     } else if (req.method === 'PUT') {
-        client.connect()
+        /* client.connect()
         try {
 
             await client.query('BEGIN')
@@ -41,11 +38,33 @@ export default async function handler(req, res) {
             throw e
         } finally {
             client.end()
-        }
-    } 
+        } */
+        const id = req.body.id
+        const card = req.body.card
+        const deck = await prisma.deck.findUnique({
+            where: {
+                id: parseInt(id)
+            }
+        })
+
+        const deckData = deck.data
+
+        deckData['cards'].push(card)
+
+        const newDeck = await prisma.deck.update({
+            where: {
+                id: parseInt(id)
+            },
+
+            data: {
+                data: deckData
+            }
+        })
+        res.status(201).json(newDeck)
+    }
     else if (req.method === 'POST') {
 
-        client.connect()
+        /* client.connect()
 
         try {
 
@@ -64,10 +83,17 @@ export default async function handler(req, res) {
             throw e
         } finally {
             client.end()
-        }
+        } */
+        const deck = await prisma.deck.create({
+            data: {
+                data: {
+                    title: req.body.title,
+                    cards: []
+                }
+            }
+        })
+        res.status(201).json(deck)
 
-        
     }
-    client.end()
 
 }
