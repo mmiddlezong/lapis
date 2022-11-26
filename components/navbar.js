@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
-function Navbar() {
+const Navbar = props => {
+    const router = useRouter()
     const { data: session, status } = useSession()
 
     return (<>
@@ -13,7 +15,7 @@ function Navbar() {
 
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <Link className="nav-link link-dark" aria-current="page" href="/">Home</Link>
+                            <Link className="nav-link link-dark" aria-current="page" href="/latest">Home</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link link-dark" href="/decks">Decks</Link>
@@ -31,17 +33,13 @@ function Navbar() {
 
                         {/* If not loading and not signed in, display the Log In button */}
                         {status !== 'authenticated' && !session && (
-                            <>
-                                <li className="nav-item me-3">
-                                    <Link className="nav-link link-dark fs-6" href='/api/auth/signin' onClick={(e) => {
-                                        e.preventDefault()
-                                        signIn()
-                                    }}>Log In</Link>
-                                </li>
-                                <li className="nav-item bg-warning rounded rounded-4">
-                                    <a className="nav-link link-dark fs-6" href="{% url 'register' %}">Sign Up</a>
-                                </li>
-                            </>
+
+                            <li className="nav-item me-3">
+                                <Link className="nav-link link-dark fs-6" href='/api/auth/signin' onClick={(e) => {
+                                    e.preventDefault()
+                                    signIn({ callbackUrl: '/latest' })
+                                }}>Log In</Link>
+                            </li>
 
                         )}
 
@@ -50,7 +48,7 @@ function Navbar() {
                             <li className="nav-item me-3">
                                 <Link className="nav-link link-dark fs-6" href='/api/auth/signout' onClick={(e) => {
                                     e.preventDefault()
-                                    signOut()
+                                    signOut({ callbackUrl: '/' })
                                 }}>Logout</Link>
                             </li>
                         )}

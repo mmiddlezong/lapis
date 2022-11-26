@@ -1,6 +1,14 @@
-
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 function Home() {
+  const router = useRouter()
+  const { data: session, status } = useSession()
+
+  if (status === "authenticated") {
+    router.push("/latest")
+  }
+
   return (<>
     <div className="row my-5 bg-transparent align-items-center gx-5 justify-content-evenly">
       <div className="col-sm-5">
