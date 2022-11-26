@@ -3,8 +3,9 @@ import GoogleProvider from "next-auth/providers/google"
 
 const authOptions = {
     session: {
-        strategy: "jwt"
+        strategy: "jwt",
     },
+
     providers: [
         
         GoogleProvider({

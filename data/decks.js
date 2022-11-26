@@ -1,5 +1,6 @@
 export const decks = [
     {
+        id: 1,
         title: "French",
         cards: [
             {
@@ -13,6 +14,7 @@ export const decks = [
         ],
     },
     {
+        id: 2,
         title: "Japanese",
         cards: [
             {
