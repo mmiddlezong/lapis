@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { decks } from '../../data/decks'
-import { Client } from 'pg'
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
 
 function DeckPage({ deck }) {
     const router = useRouter()
@@ -62,20 +64,11 @@ export default DeckPage
 export async function getServerSideProps(context) {
     const { params } = context
     const { deckId } = params
-    const client = new Client({
-        user: process.env.PGUSER,
-        host: process.env.PGHOST,
-        database: process.env.PGDATABASE,
-        password: process.env.PGPASSWORD,
-        port: process.env.PGPOST,
-        ssl: true
+    const deck = await prisma.deck.findUnique({
+        where: {
+            id: parseInt(deckId)
+        }
     })
-
-    client.connect()
-
-    const _res = await client.query(`SELECT * FROM decks WHERE id=${parseInt(deckId)};`)
-    await client.end()
-    const deck = _res.rows[0]
     return {
         props: {
             deck,
