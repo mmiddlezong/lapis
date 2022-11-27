@@ -28,7 +28,7 @@ function Home() {
 
             <div className="row my-4 justify-content-between align-items-center">
                 <div className="col-md-3 fs-4">Your recent decks</div>
-                <button type="button" class="btn btn-primary btn-sm">+ Create</button>
+                <a href="#" role="button" className="col-auto btn btn-light border border-2 rounded-5 px-5 py-3 d-flex justify-content-center align-items-center h6">+ CREATE A DECK</a>
             </div>
 
 
