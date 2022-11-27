@@ -103,7 +103,7 @@ function DecksPage({ decks }) {
             </div>
 
             <div className="row justify-content-between row-cols-lg-2 gx-5">
-                {decks.map((deck) => {
+                {decks.sort((a,b) => (a.data.title.toLowerCase() < b.data.title.toLowerCase()) ? -1 : 1).map((deck) => {
                     return (
                         <div className="col p-4">
                             <Link href={`/decks/${deck.id}`} className="text-decoration-none text-dark">
