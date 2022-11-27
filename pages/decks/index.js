@@ -2,22 +2,19 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
+import useSWR, { useSWRConfig } from 'swr'
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-const prisma = new PrismaClient()
-
-function DecksPage({ decks }) {
+function DecksPage() {
     const router = useRouter()
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const refreshData = () => {
-        router.replace(router.asPath);
-        setIsRefreshing(true);
-    };
-    useEffect(() => {
-        setIsRefreshing(false);
-    }, [decks]);
-
     const [deck, setDeck] = useState('')
+    const { data, error } = useSWR(`/api/decks/`, fetcher)
+    
+
+    if (error) return <p>Error fetching data.</p>
+    if (!data) return <p>Loading...</p>
+
 
     const submitComment = async () => {
         const response = await fetch('/api/decks', {
@@ -103,7 +100,7 @@ function DecksPage({ decks }) {
             </div>
 
             <div className="row justify-content-between row-cols-lg-2 gx-5">
-                {decks.sort((a,b) => (a.data.title.toLowerCase() < b.data.title.toLowerCase()) ? -1 : 1).map((deck) => {
+                {data.sort((a, b) => (a.data.title.toLowerCase() < b.data.title.toLowerCase()) ? -1 : 1).map((deck) => {
                     return (
                         <div className="col p-4">
                             <Link href={`/decks/${deck.id}`} className="text-decoration-none text-dark">
@@ -121,7 +118,7 @@ function DecksPage({ decks }) {
                                             </div>
                                             <div className="text-muted fs-6 pt-2">{deck.data.cards.length} cards</div>
                                             <div className="text-primary fs-6 pt-2"><span className="pe-2"><img style={{ width: "35px", height: "35px" }} className="rounded-circle border border-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" alt="icon" /></span>chingchongchangyoonkim</div>
-                                            
+
                                         </div>
                                     </div>
                                     <div className="row w-100 gx-0 my-2">
@@ -144,26 +141,3 @@ function DecksPage({ decks }) {
 }
 
 export default DecksPage
-
-export async function getServerSideProps(context) {
-    /* const connectionString = process.env.DB_URL
-    const client = new Client({
-        user: process.env.PGUSER,
-        host: process.env.PGHOST,
-        database: process.env.PGDATABASE,
-        password: process.env.PGPASSWORD,
-        port: process.env.PGPOST,
-        ssl: true
-    })
-
-    client.connect()
-
-    const _res = await client.query('SELECT * FROM decks;')
-    await client.end() */
-    const decks = await prisma.deck.findMany()
-    return {
-        props: {
-            decks,
-        },
-    }
-}

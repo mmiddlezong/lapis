@@ -10,7 +10,7 @@ function Home() {
     return (<>
 
         <div className="container">
-            <h1 className="my-3">die, {session ? session.user.name : ''}</h1>
+            <h1 className="my-3">Hey, {session ? session.user.name : ''}</h1>
 
             <div className="row bg-light border border-2 rounded rounded-4 justify-content-center align-items-center">
                 <div className="col-md-3 fs-2 m-4">Jump back in...</div>

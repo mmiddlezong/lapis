@@ -15,7 +15,7 @@ const Navbar = props => {
 
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <Link className="nav-link link-dark" aria-current="page" href="/latest">Home</Link>
+                            <Link className="nav-link link-dark" href="/latest">Home</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link link-dark" href="/decks">Decks</Link>
