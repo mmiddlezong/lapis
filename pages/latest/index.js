@@ -20,7 +20,7 @@ function Home() {
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
                         <div className="progress position-relative rounded rounded-4 border border-secondary border-1 h-25">
                             <div className="position-absolute top-50 start-50 translate-middle text-muted">25% matured</div>
-                            <div className="progress-bar rounded-pill" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ function Home() {
 
             <div className="row my-4 justify-content-between align-items-center">
                 <div className="col-md-3 fs-4">Your recent decks</div>
-                <button type="button" class="btn btn-primary btn-sm">+ Create</button>
+                <a href="#" role="button" className="col-auto btn btn-light border border-2 rounded-5 px-5 py-3 d-flex justify-content-center align-items-center h6">+ CREATE A DECK</a>
             </div>
 
 
@@ -41,7 +41,7 @@ function Home() {
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
                         <div className="progress position-relative rounded rounded-4 border border-secondary border-1 h-25">
                             <div className="position-absolute top-50 start-50 translate-middle text-muted">25% matured</div>
-                            <div className="progress-bar rounded-pill" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress-bar" role="progressbar" style={{ width: "25%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ function Home() {
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
                         <div className="progress position-relative rounded rounded-4 border border-secondary border-1 h-25">
                             <div className="position-absolute top-50 start-50 translate-middle text-muted">25% matured</div>
-                            <div className="progress-bar rounded-pill" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress-bar" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ function Home() {
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
                         <div className="progress position-relative rounded rounded-4 border border-secondary border-1 h-25">
                             <div className="position-absolute top-50 start-50 translate-middle text-muted">25% matured</div>
-                            <div className="progress-bar rounded-pill" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress-bar" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ function Home() {
                         <p className="fs-6 mt-auto text-muted">42 cards</p>
                         <div className="progress position-relative rounded rounded-4 border border-secondary border-1 h-25">
                             <div className="position-absolute top-50 start-50 translate-middle text-muted">25% matured</div>
-                            <div className="progress-bar rounded-pill" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div className="progress-bar" role="progressbar" style={{ width: 25 + "%" }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
