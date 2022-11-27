@@ -28,7 +28,7 @@ function Home() {
 
             <div className="row my-4 justify-content-between align-items-center">
                 <div className="col-md-3 fs-4">Your recent decks</div>
-                <button type="button" class="btn btn-primary">+Create</button>
+                <button type="button" class="btn btn-primary btn-sm">+ Create</button>
             </div>
 
 
