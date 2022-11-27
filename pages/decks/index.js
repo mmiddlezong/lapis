@@ -79,6 +79,7 @@ function DecksPage({ decks }) {
 
         <div className="container">
             <div className="row py-5">
+           
                 <div className="col dropdown">
                     <button className="btn btn-light btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Recent
@@ -98,8 +99,9 @@ function DecksPage({ decks }) {
                             <input className="ps-5 h-100 w-100 shadow-none" type="search" placeholder="Search..." aria-label="Search" />
                         </div>
                     </div>
-
                 </form>
+                <button type="button" class="btn btn-primary">Primary</button>
+               
             </div>
 
             <div className="row justify-content-between row-cols-lg-2 gx-5">
