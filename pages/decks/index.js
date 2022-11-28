@@ -75,7 +75,7 @@ function DecksPage() {
 
 
         <div className="container">
-            <div className="row py-5">
+            <div className="row py-5 justify-content-between align-items-center">
                 <div className="col dropdown">
                     <button className="btn btn-light btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Recent
@@ -87,16 +87,19 @@ function DecksPage() {
                     </ul>
                 </div>
                 <form className="col" role="search">
-                    <div className="position-relative rounded rounded-2 border border-2 h-100 w-100 p-0">
+                    <div className="position-relative rounded rounded-2 border border-2 h-100 w-100 py-3">
                         <div className="position-absolute top-50 start-0 translate-middle-y p-3">
                             <i className="text-muted bi bi-search"></i>
                         </div>
                         <div className="h-100">
-                            <input className="ps-5 h-100 w-100 shadow-none" type="search" placeholder="Search..." aria-label="Search" />
+                            <input className="ps-5 h-100 w-100 shadow-none" type="search" placeholder="Search your decks..." aria-label="Search" />
                         </div>
                     </div>
 
                 </form>
+                <div className="col d-flex justify-content-end">
+                    <button className="btn btn-primary">+ Create</button>
+                </div>
             </div>
 
             <div className="row justify-content-between row-cols-lg-2 gx-5">
