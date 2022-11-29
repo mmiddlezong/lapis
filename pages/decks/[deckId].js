@@ -38,11 +38,11 @@ function DeckPage() {
                 <div>
                     <div className="my-3">
                         <label htmlFor="title" className="form-label">Card front</label>
-                        <input id="title" maxlength="200" className='form-control' type='text' value={cardFront} onChange={(e) => setCardFront(e.target.value)}></input>
+                        <input id="title" maxLength="200" className='form-control' type='text' value={cardFront} onChange={(e) => setCardFront(e.target.value)}></input>
                     </div>
                     <div className="my-3">
                         <label htmlFor="title" className="form-label">Card back</label>
-                        <input id="title" maxlength="200" className='form-control' type='text' value={cardBack} onChange={(e) => setCardBack(e.target.value)}></input>
+                        <input id="title" maxLength="200" className='form-control' type='text' value={cardBack} onChange={(e) => setCardBack(e.target.value)}></input>
                     </div>
                     <button type="submit" onClick={submitCard} className="btn btn-primary mb-3">Submit</button>
 
