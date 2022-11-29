@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
 import useSWR, { useSWRConfig } from 'swr'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -10,10 +13,14 @@ function DecksPage() {
     const router = useRouter()
     const [deck, setDeck] = useState('')
     const { data, error } = useSWR(`/api/decks/`, fetcher)
-    
 
-    if (error) return <p>Error fetching data.</p>
-    if (!data) return <p>Loading... (If this message persists, try refreshing the page.)</p>
+
+
+
+    const [showCreatePage, setShowCreatePage] = useState(false);
+
+    const handleCloseCreatePage = () => setShowCreatePage(false);
+    const handleShowCreatePage = () => setShowCreatePage(true);
 
     const submitComment = async () => {
         const response = await fetch('/api/decks', {
@@ -25,52 +32,56 @@ function DecksPage() {
         })
         refreshData()
     }
-
+    if (error) return <p>Error fetching data.</p>
+    if (!data) return <p>Loading... (If this message persists, try refreshing the page.)</p>
     return (<>
 
 
+        <Modal show={showCreatePage} fullscreen={true} onHide={handleCloseCreatePage}>
+            <Modal.Header closeButton>
 
-        <div className="bg-light px-5 py-4">
+            </Modal.Header>
+            <Modal.Body>
 
 
-
-            <div className="container">
-                <div className="display-5">Create New</div>
-
-                <div className="row mt-5 justify-content-between gx-5">
-                    <div className="col-3 fs-2 text-center">
-                        <div>
-                            <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
+                <div className="position-absolute top-50 start-50 translate-middle w-75">
+                    <div className="display-5">Create New</div>
+                    <div className="row mt-5 justify-content-between gx-5">
+                        <div className="col-3 fs-2 text-center">
+                            <div>
+                                <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
+                            </div>
+                            <div className="mt-3">
+                                Deck
+                            </div>
                         </div>
-                        <div className="mt-3">
-                            Deck
+                        <div className="col-3 fs-2 text-center">
+                            <div>
+                                <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
+                            </div>
+                            <div className="mt-3">
+                                Folder
+                            </div>
+                        </div>
+                        <div className="col-3 fs-2 text-center">
+                            <div>
+                                <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
+                            </div>
+                            <div className="mt-3">
+                                Class
+                            </div>
                         </div>
                     </div>
-                    <div className="col-3 fs-2 text-center">
-                        <div>
-                            <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
-                        </div>
-                        <div className="mt-3">
-                            Folder
-                        </div>
-                    </div>
-                    <div className="col-3 fs-2 text-center">
-                        <div>
-                            <img style={{ width: "300px", height: "200px" }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_L-MJC-9VETjxjYINiu7I8Caqp7sk4RU-XVSwoHwC&s" className="img-fluid rounded rounded-3" alt="icon" />
-                        </div>
-                        <div className="mt-3">
-                            Class
-                        </div>
-                    </div>
+
                 </div>
 
-                {/* <div className="my-3">
-                    <label htmlFor="title" className="form-label">New deck title</label>
-                    <input id="title" className='form-control' type='text' value={deck} onChange={(e) => setDeck(e.target.value)}></input>
-                </div>
-                <button onClick={submitComment} className="btn btn-primary mb-3">Submit</button> */}
-            </div>
-        </div>
+
+
+            </Modal.Body>
+            <Modal.Footer>
+
+            </Modal.Footer>
+        </Modal>
 
 
         <div className="container">
@@ -97,7 +108,9 @@ function DecksPage() {
 
                 </form>
                 <div className="col d-flex justify-content-end">
-                    <button className="btn btn-primary">+ Create</button>
+                    <Button variant="primary" onClick={handleShowCreatePage}>
+                        + Create
+                    </Button>
                 </div>
             </div>
 

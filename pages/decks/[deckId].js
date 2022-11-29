@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { decks } from '../../data/decks'
-import { PrismaClient } from '@prisma/client'
 import useSWR, { useSWRConfig } from 'swr'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
