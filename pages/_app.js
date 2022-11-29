@@ -6,9 +6,7 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (<>
-    <Head>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"></link>
-    </Head>
+    
     <SessionProvider session={pageProps.session}>
       <Layout>
         <Component {...pageProps} />
