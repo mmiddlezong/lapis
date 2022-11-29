@@ -13,8 +13,7 @@ function DecksPage() {
     
 
     if (error) return <p>Error fetching data.</p>
-    if (!data) return <p>Loading...</p>
-
+    if (!data) return <p>Loading... (If this message persists, try refreshing the page.)</p>
 
     const submitComment = async () => {
         const response = await fetch('/api/decks', {

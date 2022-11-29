@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     }
     catch (e) {
         console.log(e)
-        return res.status(500).send({ success : false })
+        return res.status(500)
     }
 }
 
