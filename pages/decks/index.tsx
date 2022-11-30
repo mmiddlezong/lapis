@@ -23,7 +23,7 @@ function DecksPage() {
                 'Content-Type': 'application/json'
             },
         })
-        refreshData()
+        
     }
 
     return (<>
