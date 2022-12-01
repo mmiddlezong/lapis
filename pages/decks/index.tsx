@@ -30,7 +30,7 @@ function DecksPage() {
                 'Content-Type': 'application/json'
             },
         })
-        refreshData()
+        
     }
     if (error) return <p>Error fetching data.</p>
     if (!data) return <p>Loading... (If this message persists, try refreshing the page.)</p>
