@@ -16,4 +16,7 @@ input:focus {
   outline: none !important;
 }
 
+.chang-cool textarea{
+  background-color: lightblue;
+}
  
